@@ -1,0 +1,18 @@
+# DAG state for clf-tracker change
+schema: sdd-change-state
+change: clf-tracker
+created: 2026-07-11
+completed_phases:
+  - explore
+  - propose
+  - spec
+  - design
+current_phase: design
+next_phases:
+  - propose
+  - spec
+  - design
+  - tasks
+  - apply
+  - verify
+  - archive
