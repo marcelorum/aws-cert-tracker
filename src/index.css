@@ -1,21 +1,94 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Semantic color tokens — reference CSS variables so themes can override them */
 @theme {
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bfdbfe;
-  --color-brand-300: #93c5fd;
-  --color-brand-400: #60a5fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4ed8;
-  --color-brand-800: #1e40af;
-  --color-brand-900: #1e3a8a;
+  --color-gray-50: var(--clr-gray-50);
+  --color-gray-100: var(--clr-gray-100);
+  --color-gray-200: var(--clr-gray-200);
+  --color-gray-300: var(--clr-gray-300);
+  --color-gray-400: var(--clr-gray-400);
+  --color-gray-500: var(--clr-gray-500);
+  --color-gray-600: var(--clr-gray-600);
+  --color-gray-700: var(--clr-gray-700);
+  --color-gray-800: var(--clr-gray-800);
+  --color-gray-900: var(--clr-gray-900);
+  --color-gray-950: var(--clr-gray-950);
 
-  --color-status-not-started: #9ca3af;
-  --color-status-in-progress: #f59e0b;
-  --color-status-completed: #22c55e;
+  --color-brand-50: var(--clr-brand-50);
+  --color-brand-100: var(--clr-brand-100);
+  --color-brand-200: var(--clr-brand-200);
+  --color-brand-300: var(--clr-brand-300);
+  --color-brand-400: var(--clr-brand-400);
+  --color-brand-500: var(--clr-brand-500);
+  --color-brand-600: var(--clr-brand-600);
+  --color-brand-700: var(--clr-brand-700);
+  --color-brand-800: var(--clr-brand-800);
+  --color-brand-900: var(--clr-brand-900);
+
+  --color-status-not-started: var(--clr-status-not-started);
+  --color-status-in-progress: var(--clr-status-in-progress);
+  --color-status-completed: var(--clr-status-completed);
+}
+
+/* Light mode defaults — same as Tailwind's built-in gray + original brand */
+:root {
+  --clr-gray-50: #f9fafb;
+  --clr-gray-100: #f3f4f6;
+  --clr-gray-200: #e5e7eb;
+  --clr-gray-300: #d1d5db;
+  --clr-gray-400: #9ca3af;
+  --clr-gray-500: #6b7280;
+  --clr-gray-600: #4b5563;
+  --clr-gray-700: #374151;
+  --clr-gray-800: #1f2937;
+  --clr-gray-900: #111827;
+  --clr-gray-950: #030712;
+
+  --clr-brand-50: #eff6ff;
+  --clr-brand-100: #dbeafe;
+  --clr-brand-200: #bfdbfe;
+  --clr-brand-300: #93c5fd;
+  --clr-brand-400: #60a5fa;
+  --clr-brand-500: #3b82f6;
+  --clr-brand-600: #2563eb;
+  --clr-brand-700: #1d4ed8;
+  --clr-brand-800: #1e40af;
+  --clr-brand-900: #1e3a8a;
+
+  --clr-status-not-started: #9ca3af;
+  --clr-status-in-progress: #f59e0b;
+  --clr-status-completed: #22c55e;
+}
+
+/* Dark mode — Plasma theme (neutral zinc + cyan electric accent) */
+.dark {
+  --clr-gray-50: #fafafa;
+  --clr-gray-100: #f4f4f5;
+  --clr-gray-200: #e4e4e7;
+  --clr-gray-300: #d4d4d8;
+  --clr-gray-400: #a1a1aa;
+  --clr-gray-500: #71717a;
+  --clr-gray-600: #52525b;
+  --clr-gray-700: #3f3f46;
+  --clr-gray-800: #27272a;
+  --clr-gray-900: #18181b;
+  --clr-gray-950: #09090b;
+
+  --clr-brand-50: #ecfeff;
+  --clr-brand-100: #cffafe;
+  --clr-brand-200: #a5f3fc;
+  --clr-brand-300: #67e8f9;
+  --clr-brand-400: #22d3ee;
+  --clr-brand-500: #06b6d4;
+  --clr-brand-600: #0891b2;
+  --clr-brand-700: #0e7490;
+  --clr-brand-800: #155e75;
+  --clr-brand-900: #164e63;
+
+  --clr-status-not-started: #52525b;
+  --clr-status-in-progress: #fbbf24;
+  --clr-status-completed: #22d3ee;
 }
 
 body {
