@@ -33,7 +33,7 @@ export function ProgressRing({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="#e5e7eb"
+          className="stroke-gray-200 dark:stroke-gray-700"
           strokeWidth={strokeWidth}
         />
         {/* Progress arc */}
@@ -42,20 +42,19 @@ export function ProgressRing({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="#2563eb"
+          className="stroke-brand-500 dark:stroke-brand-400 transition-all duration-500 ease-out"
           strokeWidth={strokeWidth}
           strokeLinecap="round"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
-          className="transition-all duration-500 ease-out"
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-2xl font-bold text-gray-900">
+        <span className="text-2xl font-bold text-gray-900 dark:text-gray-100">
           {Math.round(clampedPercentage)}%
         </span>
         {label && (
-          <span className="text-xs text-gray-500">{label}</span>
+          <span className="text-xs text-gray-500 dark:text-gray-400">{label}</span>
         )}
       </div>
     </div>

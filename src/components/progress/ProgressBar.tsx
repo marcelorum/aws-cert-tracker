@@ -13,7 +13,7 @@ export function ProgressBar({ ratio, size = 'md', className }: ProgressBarProps)
   return (
     <div
       className={cn(
-        'w-full rounded-full bg-gray-200 overflow-hidden',
+        'w-full rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden',
         size === 'sm' ? 'h-1.5' : 'h-2.5',
         className,
       )}

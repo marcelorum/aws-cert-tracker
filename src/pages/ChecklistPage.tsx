@@ -13,8 +13,8 @@ export function ChecklistPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Checklist</h1>
-        <p className="text-sm text-gray-500 mt-1">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Checklist</h1>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
           Track topics across all CLF-C02 domains. Click a status badge to advance it.
         </p>
       </div>
@@ -23,8 +23,8 @@ export function ChecklistPage() {
         {domains.length === 0 && (
           <div className="text-center py-12">
             <div className="animate-pulse flex flex-col items-center gap-2">
-              <div className="w-10 h-10 bg-gray-200 rounded-lg" />
-              <p className="text-sm text-gray-400">Loading checklist...</p>
+              <div className="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-lg" />
+              <p className="text-sm text-gray-400 dark:text-gray-500">Loading checklist...</p>
             </div>
           </div>
         )}

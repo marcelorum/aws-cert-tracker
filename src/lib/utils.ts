@@ -27,11 +27,11 @@ export function getStatusLabel(status: TopicStatus): string {
 export function getStatusColor(status: TopicStatus): string {
   switch (status) {
     case 'not_started':
-      return 'text-gray-400 bg-gray-100';
+      return 'text-gray-400 bg-gray-100 dark:text-gray-500 dark:bg-gray-800';
     case 'in_progress':
-      return 'text-amber-700 bg-amber-100';
+      return 'text-amber-700 bg-amber-100 dark:text-amber-400 dark:bg-amber-900/30';
     case 'completed':
-      return 'text-green-700 bg-green-100';
+      return 'text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900/30';
   }
 }
 

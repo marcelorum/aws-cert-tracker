@@ -6,3 +6,8 @@ coverage/
 *.tsbuildinfo
 vite.config.d.ts
 vite.config.js
+
+# Developer reference — local only
+commands.md
+plugins-guide.md
+plugin-context.md

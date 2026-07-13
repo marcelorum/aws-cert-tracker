@@ -9,6 +9,14 @@ export class CLFTrackerDB extends Dexie {
 
   constructor() {
     super('CLFTrackerDB');
+    this.version(2).stores({
+      exam: '++id, name, targetDate',
+      domain: '++id, examId, weight',
+      topic: '++id, domainId, parentTopicId, status',
+      resource: '++id, topicId, resourceType, url, createdAt',
+    }).upgrade(async () => {
+      // No data migration needed — v1→v2 is additive (targetDate, dateSet fields)
+    });
     this.version(1).stores({
       exam: '++id, name',
       domain: '++id, examId, weight',

@@ -146,14 +146,14 @@ Los specs son el source of truth del comportamiento: `openspec/specs/`.
 
 ## Backlog / Phase 2
 
+- [ ] **Refinar colores dark mode**: ajustar paleta de colores del dark mode (fondos, textos, acentos) — el actual no convence del todo
 - [ ] **Toggle progress mode**: switch entre Overall Progress por dominios (weighted) o por topics (individual)
-- [ ] **Exam target date**: campo para configurar la fecha del examen real
-- [ ] **Countdown + pace tracker**: barra de progreso basada en topics restantes vs días hasta el examen
+- [x] **Exam target date + countdown + pace tracker**: campo para fecha de examen, countdown de días restantes, y barra de pace (topics restantes vs días hasta el examen)
 - [ ] **Study reminders**: notificaciones/alertas con fechas sugeridas de estudio
 - [ ] Study session logging with timer
 - [ ] Practice exam quiz mode
 - [ ] Progress charts over time
-- [ ] Dark mode
+- [x] **Dark mode toggle**: switch claro/oscuro con persistencia en localStorage, Tailwind v4 `dark:` class strategy
 - [ ] Export/backup (JSON download)
 - [ ] Spaced repetition / weak-domain suggestions
 - [ ] Gentle AI sub-agent quiz generation

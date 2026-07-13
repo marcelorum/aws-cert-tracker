@@ -73,7 +73,7 @@ export function ResourceForm({ topicId }: ResourceFormProps) {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 font-medium"
+        className="flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 font-medium dark:text-brand-400 dark:hover:text-brand-300"
       >
         <Plus className="w-4 h-4" />
         Add Resource
@@ -84,14 +84,14 @@ export function ResourceForm({ topicId }: ResourceFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="border border-gray-200 rounded-lg p-4 space-y-3 bg-gray-50"
+      className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 space-y-3 bg-gray-50 dark:bg-gray-800/50"
     >
       <div className="flex items-center justify-between">
-        <span className="text-sm font-semibold text-gray-700">New Resource</span>
+        <span className="text-sm font-semibold text-gray-700 dark:text-gray-100">New Resource</span>
         <button
           type="button"
           onClick={() => { resetForm(); setIsOpen(false); }}
-          className="text-xs text-gray-400 hover:text-gray-600"
+          className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
         >
           Cancel
         </button>
@@ -99,26 +99,26 @@ export function ResourceForm({ topicId }: ResourceFormProps) {
 
       {/* Resource Type */}
       <div>
-        <label className="block text-xs font-medium text-gray-500 mb-1">Type</label>
+        <label className="block text-xs font-medium text-gray-500 mb-1 dark:text-gray-400">Type</label>
         <Select.Root
           value={resourceType}
           onValueChange={(v) => setResourceType(v as ResourceType)}
         >
-          <Select.Trigger className="inline-flex items-center justify-between gap-2 w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500">
+          <Select.Trigger className="inline-flex items-center justify-between gap-2 w-full px-3 py-2 text-sm bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 dark:bg-gray-800 dark:border-gray-600">
             <Select.Value />
             <Select.Icon>
               <ChevronDown className="w-4 h-4" />
             </Select.Icon>
           </Select.Trigger>
           <Select.Portal>
-            <Select.Content className="bg-white border border-gray-200 rounded-md shadow-lg z-50">
+            <Select.Content className="bg-white border border-gray-200 rounded-md shadow-lg z-50 dark:bg-gray-800 dark:border-gray-700">
               <Select.Viewport>
                 {(Object.entries(RESOURCE_TYPE_LABELS) as [ResourceType, string][]).map(
                   ([key, label]) => (
                     <Select.Item
                       key={key}
                       value={key}
-                      className="flex items-center gap-2 px-3 py-2 text-sm cursor-pointer hover:bg-brand-50 outline-none data-[state=checked]:bg-brand-50"
+                      className="flex items-center gap-2 px-3 py-2 text-sm cursor-pointer hover:bg-brand-50 outline-none data-[state=checked]:bg-brand-50 dark:hover:bg-brand-900/20 dark:data-[state=checked]:bg-brand-900/20"
                     >
                       <Select.ItemText>{label}</Select.ItemText>
                       <Select.ItemIndicator>
@@ -135,7 +135,7 @@ export function ResourceForm({ topicId }: ResourceFormProps) {
 
       {/* Title */}
       <div>
-        <label className="block text-xs font-medium text-gray-500 mb-1">
+        <label className="block text-xs font-medium text-gray-500 mb-1 dark:text-gray-400">
           Title
         </label>
         <input
@@ -143,14 +143,14 @@ export function ResourceForm({ topicId }: ResourceFormProps) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder={`${RESOURCE_TYPE_LABELS[resourceType]} title`}
-          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500"
+          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 dark:bg-gray-800 dark:border-gray-600"
         />
       </div>
 
       {/* URL */}
       {urlRequired && (
         <div>
-          <label className="block text-xs font-medium text-gray-500 mb-1">
+          <label className="block text-xs font-medium text-gray-500 mb-1 dark:text-gray-400">
             URL <span className="text-red-500">*</span>
           </label>
           <input
@@ -162,8 +162,8 @@ export function ResourceForm({ topicId }: ResourceFormProps) {
             }}
             placeholder="https://..."
             className={cn(
-              'w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500',
-              urlError ? 'border-red-400' : 'border-gray-300',
+              'w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 dark:bg-gray-800',
+              urlError ? 'border-red-400' : 'border-gray-300 dark:border-gray-600',
             )}
           />
           {urlError && (
@@ -175,7 +175,7 @@ export function ResourceForm({ topicId }: ResourceFormProps) {
       {/* Notes */}
       <div>
         <div className="flex items-center justify-between mb-1">
-          <label className="text-xs font-medium text-gray-500">Notes</label>
+          <label className="text-xs font-medium text-gray-500 dark:text-gray-400">Notes</label>
           <span
             className={cn(
               'text-xs',
@@ -196,8 +196,8 @@ export function ResourceForm({ topicId }: ResourceFormProps) {
           rows={3}
           placeholder="Optional notes or key takeaways..."
           className={cn(
-            'w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none',
-            notesError ? 'border-red-400' : 'border-gray-300',
+            'w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none dark:bg-gray-800',
+            notesError ? 'border-red-400' : 'border-gray-300 dark:border-gray-600',
           )}
         />
         {notesError && (

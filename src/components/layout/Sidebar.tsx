@@ -17,22 +17,22 @@ export function Sidebar() {
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-20 bg-black/30 lg:hidden"
+          className="fixed inset-0 z-20 bg-black/30 dark:bg-black/50 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       <aside
         className={cn(
-          'fixed left-0 top-0 z-30 flex h-screen w-64 flex-col border-r border-gray-200 bg-white transition-transform duration-200 lg:static lg:z-auto',
+          'fixed left-0 top-0 z-30 flex h-screen w-64 flex-col border-r border-gray-200 bg-white transition-transform duration-200 lg:static lg:z-auto dark:border-gray-700 dark:bg-gray-900',
           sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0 lg:w-0 lg:overflow-hidden lg:border-0',
         )}
       >
-        <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200">
-          <h1 className="text-lg font-bold text-brand-600">CLF Tracker</h1>
+        <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200 dark:border-gray-700">
+          <h1 className="text-lg font-bold text-brand-600 dark:text-brand-400">CLF Tracker</h1>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="p-1 text-gray-400 hover:text-gray-600 lg:hidden"
+            className="p-1 text-gray-400 hover:text-gray-600 lg:hidden dark:text-gray-500 dark:hover:text-gray-300"
             aria-label="Close sidebar"
           >
             <X className="w-5 h-5" />
@@ -49,8 +49,8 @@ export function Sidebar() {
                 cn(
                   'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
                   isActive
-                    ? 'bg-brand-50 text-brand-700'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
+                    ? 'bg-brand-50 text-brand-700 dark:bg-brand-900/30 dark:text-brand-300'
+                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100',
                 )
               }
             >
@@ -60,8 +60,8 @@ export function Sidebar() {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-gray-200">
-          <p className="text-xs text-gray-400">AWS CLF-C02 Tracker</p>
+        <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+          <p className="text-xs text-gray-400 dark:text-gray-500">AWS CLF-C02 Tracker</p>
         </div>
       </aside>
     </>

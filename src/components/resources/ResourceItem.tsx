@@ -87,14 +87,14 @@ export function ResourceItem({ resource, onDelete }: ResourceItemProps) {
 
   if (editing) {
     return (
-      <div className="border border-brand-200 rounded-lg p-3 space-y-2 bg-brand-50/50">
+      <div className="border border-brand-200 rounded-lg p-3 space-y-2 bg-brand-50/50 dark:border-brand-800 dark:bg-brand-900/20">
         <input
           ref={inputRef}
           type="text"
           value={editTitle}
           onChange={(e) => setEditTitle(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="w-full px-2 py-1 text-sm font-medium border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-500"
+          className="w-full px-2 py-1 text-sm font-medium border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-500 dark:bg-gray-800 dark:border-gray-600"
           placeholder="Title"
         />
         <input
@@ -106,15 +106,15 @@ export function ResourceItem({ resource, onDelete }: ResourceItemProps) {
           }}
           onKeyDown={handleKeyDown}
           className={cn(
-            'w-full px-2 py-1 text-sm border rounded focus:outline-none focus:ring-2 focus:ring-brand-500',
-            urlError ? 'border-red-400' : 'border-gray-300',
+            'w-full px-2 py-1 text-sm border rounded focus:outline-none focus:ring-2 focus:ring-brand-500 dark:bg-gray-800',
+            urlError ? 'border-red-400' : 'border-gray-300 dark:border-gray-600',
           )}
-          placeholder="https://..."
+          placeholder="https://"
         />
         {urlError && <p className="text-xs text-red-500">{urlError}</p>}
         <div>
           <div className="flex items-center justify-between">
-            <span className="text-xs text-gray-400">Notes</span>
+            <span className="text-xs text-gray-400 dark:text-gray-500">Notes</span>
             <span
               className={cn(
                 'text-xs',
@@ -137,8 +137,8 @@ export function ResourceItem({ resource, onDelete }: ResourceItemProps) {
             }}
             rows={2}
             className={cn(
-              'w-full px-2 py-1 text-sm border rounded focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none mt-1',
-              notesError ? 'border-red-400' : 'border-gray-300',
+              'w-full px-2 py-1 text-sm border rounded focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none mt-1 dark:bg-gray-800',
+              notesError ? 'border-red-400' : 'border-gray-300 dark:border-gray-600',
             )}
           />
           {notesError && <p className="text-xs text-red-500 mt-1">{notesError}</p>}
@@ -146,14 +146,14 @@ export function ResourceItem({ resource, onDelete }: ResourceItemProps) {
         <div className="flex items-center justify-end gap-2">
           <button
             onClick={cancelEditing}
-            className="p-1 text-gray-400 hover:text-gray-600"
+            className="p-1 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
             title="Cancel"
           >
             <X className="w-4 h-4" />
           </button>
           <button
             onClick={saveEditing}
-            className="p-1 text-brand-600 hover:text-brand-800"
+            className="p-1 text-brand-600 hover:text-brand-800 dark:text-brand-400 dark:hover:text-brand-300"
             title="Save"
           >
             <Check className="w-4 h-4" />
@@ -167,7 +167,7 @@ export function ResourceItem({ resource, onDelete }: ResourceItemProps) {
     <div className="flex items-start gap-3 py-2 group">
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <span className="text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">
             {RESOURCE_TYPE_LABELS[resource.resourceType]}
           </span>
           {resource.url && (
@@ -175,24 +175,24 @@ export function ResourceItem({ resource, onDelete }: ResourceItemProps) {
               href={resource.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-brand-600 hover:text-brand-800 hover:underline inline-flex items-center gap-1"
+              className="text-sm font-medium text-brand-600 hover:text-brand-800 hover:underline inline-flex items-center gap-1 dark:text-brand-400 dark:hover:text-brand-300"
             >
               {resource.title}
               <ExternalLink className="w-3 h-3" />
             </a>
           )}
           {!resource.url && (
-            <span className="text-sm font-medium text-gray-800">
+            <span className="text-sm font-medium text-gray-800 dark:text-gray-100">
               {resource.title}
             </span>
           )}
         </div>
         {resource.notes && (
-          <p className="text-xs text-gray-500 mt-0.5 line-clamp-2">
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-2">
             {resource.notes}
           </p>
         )}
-        <span className="text-xs text-gray-400 mt-0.5 block">
+        <span className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 block">
           {formatDate(resource.createdAt)}
         </span>
       </div>
@@ -200,7 +200,7 @@ export function ResourceItem({ resource, onDelete }: ResourceItemProps) {
       <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
         <button
           onClick={startEditing}
-          className="p-1 text-gray-400 hover:text-brand-600"
+          className="p-1 text-gray-400 hover:text-brand-600 dark:text-gray-500"
           title="Edit"
         >
           <Pencil className="w-3.5 h-3.5" />
@@ -208,7 +208,7 @@ export function ResourceItem({ resource, onDelete }: ResourceItemProps) {
         <button
           onClick={handleDelete}
           disabled={deleting}
-          className="p-1 text-gray-400 hover:text-red-600"
+          className="p-1 text-gray-400 hover:text-red-600 dark:text-gray-500"
           title="Delete"
         >
           <Trash2 className="w-3.5 h-3.5" />

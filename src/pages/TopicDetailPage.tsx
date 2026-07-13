@@ -13,7 +13,7 @@ export function TopicDetailPage() {
   if (!topicId) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-500">No topic selected.</p>
+        <p className="text-gray-500 dark:text-gray-400">No topic selected.</p>
       </div>
     );
   }
@@ -22,7 +22,7 @@ export function TopicDetailPage() {
     return (
       <div className="text-center py-12">
         <div className="animate-pulse">
-          <p className="text-gray-400">Loading topic...</p>
+          <p className="text-gray-400 dark:text-gray-500">Loading topic...</p>
         </div>
       </div>
     );
@@ -33,7 +33,7 @@ export function TopicDetailPage() {
       {/* Back button */}
       <button
         onClick={() => navigate('/checklist')}
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 transition-colors"
+        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 transition-colors dark:text-gray-400 dark:hover:text-gray-200"
       >
         <ArrowLeft className="w-4 h-4" />
         Back to Checklist
@@ -42,16 +42,16 @@ export function TopicDetailPage() {
       {/* Topic header */}
       <div>
         <div className="flex items-center gap-3">
-          <h1 className="text-2xl font-bold text-gray-900">{topic.name}</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{topic.name}</h1>
           <StatusBadge topicId={topic.id!} status={topic.status} />
         </div>
-        <p className="text-sm text-gray-500 mt-1">{topic.description}</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{topic.description}</p>
       </div>
 
       {/* Resources section */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-800">Resources</h2>
+          <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Resources</h2>
         </div>
 
         <ResourceList topicId={topic.id!} />

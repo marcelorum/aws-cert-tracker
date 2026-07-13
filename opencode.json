@@ -1,0 +1,7 @@
+{
+  "agent": {
+    "gentle-orchestrator": {
+      "model": "deepseek/deepseek-v4-flash-free"
+    }
+  }
+}

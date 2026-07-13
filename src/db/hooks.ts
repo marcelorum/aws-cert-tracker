@@ -1,6 +1,8 @@
+import { useCallback, useMemo } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from './schema';
 import type { Domain, Topic, Resource } from '../lib/types';
+import { calcExamPace, type ExamPaceResult } from '../lib/progress';
 
 export function useDomains(examId?: number): Domain[] {
   return useLiveQuery(
@@ -86,4 +88,48 @@ export async function updateResource(
 
 export async function deleteResource(resourceId: number): Promise<void> {
   await db.resource.delete(resourceId);
+}
+
+export interface ExamSchedule {
+  targetDate: string | null;
+  dateSet: number | null;
+  setTargetDate: (date: string) => Promise<void>;
+  clearTargetDate: () => Promise<void>;
+  daysRemaining: number | null;
+  daysElapsed: number | null;
+  pace: ExamPaceResult;
+}
+
+export function useExamSchedule(): ExamSchedule {
+  const exam = useLiveQuery(() => db.exam.get(1), [], undefined);
+  const allTopics = useAllTopics();
+
+  const targetDate = exam?.targetDate ?? null;
+  const dateSet = exam?.dateSet ?? null;
+
+  const totalTopics = allTopics.length;
+  const completedTopics = allTopics.filter((t) => t.status === 'completed').length;
+
+  const paceResult = useMemo(
+    () => calcExamPace({ targetDate, dateSet, totalTopics, completedTopics }),
+    [targetDate, dateSet, totalTopics, completedTopics],
+  );
+
+  const setTargetDate = useCallback(async (date: string) => {
+    await db.exam.update(1, { targetDate: date, dateSet: Date.now() });
+  }, []);
+
+  const clearTargetDate = useCallback(async () => {
+    await db.exam.update(1, { targetDate: undefined, dateSet: undefined });
+  }, []);
+
+  return {
+    targetDate,
+    dateSet,
+    setTargetDate,
+    clearTargetDate,
+    daysRemaining: paceResult.daysRemaining,
+    daysElapsed: paceResult.daysElapsed,
+    pace: paceResult,
+  };
 }

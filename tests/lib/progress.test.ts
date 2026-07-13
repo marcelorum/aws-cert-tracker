@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calcOverallProgress, calcDomainProgress } from '../../src/lib/progress';
+import { calcOverallProgress, calcWeightedOverallProgress, calcDomainProgress } from '../../src/lib/progress';
 
 describe('calcOverallProgress', () => {
   it('returns 0 for empty topics', () => {
@@ -87,5 +87,99 @@ describe('calcDomainProgress', () => {
     expect(d2.total).toBe(1);
     expect(d2.completed).toBe(1);
     expect(d2.ratio).toBe(1);
+  });
+});
+
+describe('calcWeightedOverallProgress', () => {
+  it('returns 0 for empty topics', () => {
+    const domains = [{ id: 1, weight: 100 }];
+    expect(calcWeightedOverallProgress([], domains)).toBe(0);
+  });
+
+  it('returns 0 for empty domains', () => {
+    const topics = [{ status: 'completed', domainId: 1 }];
+    expect(calcWeightedOverallProgress(topics, [])).toBe(0);
+  });
+
+  it('returns 0 when no topics are completed', () => {
+    const topics = [
+      { status: 'not_started', domainId: 1 },
+      { status: 'in_progress', domainId: 1 },
+    ];
+    const domains = [{ id: 1, weight: 100 }];
+    expect(calcWeightedOverallProgress(topics, domains)).toBe(0);
+  });
+
+  it('returns 100 when all topics are completed', () => {
+    const topics = [
+      { status: 'completed', domainId: 1 },
+      { status: 'completed', domainId: 2 },
+    ];
+    const domains = [
+      { id: 1, weight: 24 },
+      { id: 2, weight: 34 },
+    ];
+    expect(calcWeightedOverallProgress(topics, domains)).toBe(100);
+  });
+
+  it('matches the spec scenario — 30% result', () => {
+    const topics = [
+      // Domain A (30% weight) — 10/10 completed
+      ...Array.from({ length: 10 }, () => ({ status: 'completed' as const, domainId: 1 })),
+      // Domain B (50% weight) — 0/10 completed
+      ...Array.from({ length: 10 }, () => ({ status: 'not_started' as const, domainId: 2 })),
+      // Domain C (20% weight) — 0/10 completed
+      ...Array.from({ length: 10 }, () => ({ status: 'not_started' as const, domainId: 3 })),
+    ];
+    const domains = [
+      { id: 1, weight: 30 },
+      { id: 2, weight: 50 },
+      { id: 3, weight: 20 },
+    ];
+    // (1.0 × 30 + 0 × 50 + 0 × 20) / 100 × 100 = 30%
+    expect(calcWeightedOverallProgress(topics, domains)).toBeCloseTo(30, 2);
+  });
+
+  it('excludes zero-topic domains from the total weight', () => {
+    const topics = [
+      { status: 'completed', domainId: 1 },
+      { status: 'not_started', domainId: 1 },
+    ];
+    const domains = [
+      { id: 1, weight: 60 },
+      { id: 2, weight: 40 },
+    ];
+    // Only domain 1 has topics: (0.5 × 60) / 60 × 100 = 50%
+    expect(calcWeightedOverallProgress(topics, domains)).toBeCloseTo(50, 2);
+  });
+
+  it('diverges from flat mode with asymmetric topic distribution', () => {
+    // Domain A: 6 topics, all completed, 24% weight
+    // Domain B: 10 topics, none completed, 34% weight
+    const topics = [
+      ...Array.from({ length: 6 }, () => ({ status: 'completed' as const, domainId: 1 })),
+      ...Array.from({ length: 10 }, () => ({ status: 'not_started' as const, domainId: 2 })),
+    ];
+    const domains = [
+      { id: 1, weight: 24 },
+      { id: 2, weight: 34 },
+    ];
+    // Weighted: (1.0 × 24 + 0 × 34) / (24 + 34) × 100 = 2400/58 ≈ 41.38
+    const weighted = calcWeightedOverallProgress(topics, domains);
+    // Flat: (6 + 0) / (6 + 10) × 100 = 37.5
+    const flat = calcOverallProgress(topics);
+    expect(weighted).toBeCloseTo(41.38, 1);
+    expect(flat).toBeCloseTo(37.5, 1);
+    expect(weighted).not.toBeCloseTo(flat, 0);
+  });
+
+  it('handles partial across a single domain', () => {
+    const topics = [
+      { status: 'completed', domainId: 1 },
+      { status: 'completed', domainId: 1 },
+      { status: 'not_started', domainId: 1 },
+    ];
+    const domains = [{ id: 1, weight: 100 }];
+    expect(calcWeightedOverallProgress(topics, domains)).toBeCloseTo(66.67, 1);
   });
 });

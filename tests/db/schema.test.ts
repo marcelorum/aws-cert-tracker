@@ -19,6 +19,7 @@ describe('CLFTrackerDB', () => {
     expect(schema.schema.primKey.name).toBe('id');
     expect(schema.schema.primKey.auto).toBe(true);
     expect(schema.schema.indexes.some((idx) => idx.keyPath === 'name')).toBe(true);
+    expect(schema.schema.indexes.some((idx) => idx.keyPath === 'targetDate')).toBe(true);
   });
 
   it('should define the domain table with correct schema', () => {
@@ -51,7 +52,7 @@ describe('CLFTrackerDB', () => {
     expect(schema.schema.indexes.some((idx) => idx.keyPath === 'createdAt')).toBe(true);
   });
 
-  it('should have version 1', () => {
-    expect(db.verno).toBe(1);
+  it('should have version 2', () => {
+    expect(db.verno).toBe(2);
   });
 });

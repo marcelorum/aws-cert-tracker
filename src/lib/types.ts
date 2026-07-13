@@ -6,6 +6,8 @@ export interface Exam {
   id?: number;
   name: string;
   code: string;
+  targetDate?: string; // YYYY-MM-DD format
+  dateSet?: number;    // timestamp when targetDate was set
 }
 
 export interface Domain {

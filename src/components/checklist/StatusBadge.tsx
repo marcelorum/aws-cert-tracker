@@ -34,7 +34,7 @@ export function StatusBadge({ topicId, status }: StatusBadgeProps) {
       <span
         className={cn(
           'w-1.5 h-1.5 rounded-full',
-          status === 'not_started' && 'bg-gray-400',
+          status === 'not_started' && 'bg-gray-400 dark:bg-gray-500',
           status === 'in_progress' && 'bg-amber-500',
           status === 'completed' && 'bg-green-500',
         )}
