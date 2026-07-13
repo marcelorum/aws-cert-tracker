@@ -146,8 +146,8 @@ Los specs son el source of truth del comportamiento: `openspec/specs/`.
 
 ## Backlog / Phase 2
 
-- [ ] **Refinar colores dark mode**: ajustar paleta de colores del dark mode (fondos, textos, acentos) — el actual no convence del todo
-- [ ] **Toggle progress mode**: switch entre Overall Progress por dominios (weighted) o por topics (individual)
+- [x] **Refinar colores dark mode**: paleta plasma/nebula — fondos zinc neutros, brand cian eléctrico, completado en cian
+- [x] **Toggle progress mode**: switch entre Overall Progress por dominios (weighted) o por topics (individual)
 - [x] **Exam target date + countdown + pace tracker**: campo para fecha de examen, countdown de días restantes, y barra de pace (topics restantes vs días hasta el examen)
 - [ ] **Study reminders**: notificaciones/alertas con fechas sugeridas de estudio
 - [ ] Study session logging with timer
