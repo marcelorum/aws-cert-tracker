@@ -11,3 +11,6 @@ vite.config.js
 commands.md
 plugins-guide.md
 plugin-context.md
+
+.atl/
+openspec/

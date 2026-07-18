@@ -1,0 +1,23 @@
+name: Deploy to mintaka.ar
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: mintaka.ar
+          username: deploy
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            cd /home/deploy/apps/${{ github.event.repository.name }}
+            git pull origin main
+            docker compose up -d --build --pull always
+            docker system prune -f
