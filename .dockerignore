@@ -1,0 +1,16 @@
+.git/
+.gitignore
+.github/
+.atl/
+openspec/
+opencode.json
+node_modules/
+dist/
+coverage/
+*.md
+LICENSE
+tests/
+.DS_Store
+*.local
+.env
+.env.*

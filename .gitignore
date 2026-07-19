@@ -7,10 +7,16 @@ coverage/
 vite.config.d.ts
 vite.config.js
 
+# Environment files — secrets
+.env
+.env.*
+
 # Developer reference — local only
 commands.md
 plugins-guide.md
 plugin-context.md
 
+# Gentle AI / OpenCode — AI tooling, not part of the app
 .atl/
 openspec/
+opencode.json
