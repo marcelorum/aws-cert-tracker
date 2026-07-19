@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  base: '/clftrack/',
   plugins: [
     react(),
     tailwindcss(),
@@ -27,15 +28,15 @@ export default defineConfig({
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait-primary',
-        start_url: '/',
+        start_url: '/clftrack/',
         icons: [
           {
-            src: '/manifest-icon-192.png',
+            src: '/clftrack/manifest-icon-192.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/manifest-icon-512.png',
+            src: '/clftrack/manifest-icon-512.png',
             sizes: '512x512',
             type: 'image/png',
           },
