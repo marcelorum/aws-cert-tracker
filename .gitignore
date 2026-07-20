@@ -20,3 +20,6 @@ plugin-context.md
 .atl/
 openspec/
 opencode.json
+
+# Deployment logs — local only
+deploy-log.md
